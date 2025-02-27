@@ -55,3 +55,5 @@ lspconfig.lua_ls.setup({
         },
     },
 })
+
+lspconfig.lemminx.setup({})

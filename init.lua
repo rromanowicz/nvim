@@ -54,12 +54,19 @@ require("lazy").setup({
 
   "neovim/nvim-lspconfig",
   {
-    "williamboman/mason.nvim",
-    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
-
+    "williamboman/mason.nvim", cmd = { "Mason", "MasonInstall", "MasonUpdate" },
     opts = function()
       return require "configs.mason"
     end,
+
+    "williamboman/mason-lspconfig.nvim",
+    config = function (_, opts)
+      require("mason-lspconfig").setup {
+        ensure_installed = {"lua_ls", "rust_analyzer", "lemminx", "jdtls"},
+        automatic_installation = true,
+      }
+      
+    end
   },
 
   {

@@ -58,14 +58,15 @@ require("lazy").setup({
     opts = function()
       return require "configs.mason"
     end,
+  },
 
+  {
     "williamboman/mason-lspconfig.nvim",
     config = function (_, opts)
       require("mason-lspconfig").setup {
         ensure_installed = {"lua_ls", "rust_analyzer", "lemminx", "jdtls"},
         automatic_installation = true,
       }
-      
     end
   },
 

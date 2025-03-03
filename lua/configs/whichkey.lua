@@ -109,10 +109,19 @@ wk.add({
 })
 
 wk.add({
-  { "<leader>t",  group = "[T]erminal" },
-  { "<leader>th", "<cmd>FloatermNew --height=0.3 --wintype=split<cr>",      desc = "Horizontal" },
-  { "<leader>tv", "<cmd>FloatermNew --height=0.3 --wintype=vsplit<cr>",      desc = "Vertical" },
-  { "<leader>tf", "<cmd>FloatermNew --height=0.6 --width=0.6<cr>",      desc = "Float" },
+  { "<leader>t",  group = "[t]erminal" },
+  { "<leader>th", "<cmd>FloatermNew --height=0.3 --wintype=split<cr>",      desc = "[H]orizontal" },
+  { "<leader>tv", "<cmd>FloatermNew --height=0.3 --wintype=vsplit<cr>",      desc = "[V]ertical" },
+  { "<leader>tf", "<cmd>FloatermNew --height=0.6 --width=0.6<cr>",      desc = "[f]loat" },
+  { "<leader>tF", "<cmd>tabnew<cr><cmd>FloatermNew --height=1.0 --width=1.0<cr>",      desc = "[F]ull" },
+})
+
+wk.add({
+  { "<leader>T",  group = "[T]ab" },
+  { "<leader>TN", "<cmd>tabnew<cr>",      desc = "[N]ew" },
+  { "<leader>Tn", "<cmd>tabnext<cr>",      desc = "[N]ext" },
+  { "<leader>Tp", "<cmd>tabprevious<cr>",      desc = "[P]revious" },
+  { "<leader>Tc", "<cmd>tabclose<cr><cr>",      desc = "[C]lose" },
 })
 
 wk.add({

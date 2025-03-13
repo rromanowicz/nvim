@@ -1,6 +1,7 @@
 local lspconfig = require("lspconfig")
 
 lspconfig.jdtls.setup({
+    capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
     init_options = {
         bundles = require("spring_boot").java_extensions(),
     },
@@ -10,11 +11,11 @@ lspconfig.jdtls.setup({
                 runtimes = {
                     {
                         name = "JavaSE-19",
-                        path = "~/.jdk/jdk-19.0.2/Contents/Home/",
+                        path = "~/.jdk/jdk-19.0.2/",
                     },
                     {
                         name = "JavaSE-21",
-                        path = "~/.jdk/jdk-21/Contents/Home/",
+                        path = "~/.jdk/jdk-21/",
                     },
                 },
             },

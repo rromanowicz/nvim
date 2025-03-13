@@ -54,7 +54,8 @@ require("lazy").setup({
 
   "neovim/nvim-lspconfig",
   {
-    "williamboman/mason.nvim", cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+    "williamboman/mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
     opts = function()
       return require "configs.mason"
     end,
@@ -62,9 +63,9 @@ require("lazy").setup({
 
   {
     "williamboman/mason-lspconfig.nvim",
-    config = function (_, opts)
+    config = function(_, opts)
       require("mason-lspconfig").setup {
-        ensure_installed = {"lua_ls", "rust_analyzer", "codelldb", "lemminx", "jdtls"},
+        ensure_installed = { "lua_ls", "rust_analyzer", "lemminx", "jdtls" },
         automatic_installation = true,
       }
     end
@@ -123,7 +124,7 @@ require("lazy").setup({
 
   { "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
   "NMAC427/guess-indent.nvim",
-  { "nvim-telescope/telescope.nvim",   tag = "0.1.2",                                     dependencies = { "nvim-lua/plenary.nvim" } },
+  { "nvim-telescope/telescope.nvim",   tag = "0.1.8",                                     dependencies = { "nvim-lua/plenary.nvim" } },
   { "debugloop/telescope-undo.nvim",   dependencies = { "nvim-telescope/telescope.nvim" } },
   -- "klen/nvim-config-local",
   "rcarriga/nvim-notify",

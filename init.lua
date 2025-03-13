@@ -205,11 +205,11 @@ require("lazy").setup({
     end,
   },
 
-  -- {
-  --   'mrcjkb/rustaceanvim',
-  --   version = '^5', -- Recommended
-  --   lazy = false,   -- This plugin is already lazy
-  -- },
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^5', -- Recommended
+    lazy = false,   -- This plugin is already lazy
+  },
 
   {
     "saecki/crates.nvim",
@@ -253,3 +253,5 @@ require('gitsigns').setup()
 require("mappings")
 require("configs.whichkey")
 require("cmdline")
+
+require("configs.dap.codelldb")

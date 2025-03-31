@@ -22,17 +22,6 @@ lspconfig.jdtls.setup({
     },
 })
 
-lspconfig.rust_analyzer.setup {
-    capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
-    settings = {
-        ["rust-analyzer"] = {
-            rustc = {
-                source = "discover",
-            }
-        },
-    },
-}
-
 on_lsp_attach(function(ev)
     vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 end)

@@ -64,7 +64,7 @@ require("lazy").setup({
     "williamboman/mason-lspconfig.nvim",
     config = function (_, opts)
       require("mason-lspconfig").setup {
-        ensure_installed = {"lua_ls", "rust_analyzer", "lemminx", "jdtls"},
+        ensure_installed = {"lua_ls", "lemminx", "jdtls"},
         automatic_installation = true,
       }
     end
@@ -253,4 +253,4 @@ require("mappings")
 require("configs.whichkey")
 require("cmdline")
 
-require("configs.dap.codelldb")
+require("configs.dap.rust")

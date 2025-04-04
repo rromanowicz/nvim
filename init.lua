@@ -19,7 +19,6 @@ vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
 
 require("lazy").setup({
   { "catppuccin/nvim",             name = "catppuccin" },
-  { 'projekt0n/github-nvim-theme', name = 'github-theme' },
   "nvim-lualine/lualine.nvim",
   "rmagatti/auto-session",
   { "windwp/nvim-autopairs",         event = "InsertEnter" },
@@ -54,7 +53,8 @@ require("lazy").setup({
 
   "neovim/nvim-lspconfig",
   {
-    "williamboman/mason.nvim", cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+    "williamboman/mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
     opts = function()
       return require "configs.mason"
     end,
@@ -62,9 +62,9 @@ require("lazy").setup({
 
   {
     "williamboman/mason-lspconfig.nvim",
-    config = function (_, opts)
+    config = function(_, opts)
       require("mason-lspconfig").setup {
-        ensure_installed = {"lua_ls", "lemminx", "jdtls"},
+        ensure_installed = { "lua_ls", "lemminx", "jdtls", "pylsp", "ruff" },
         automatic_installation = true,
       }
     end
@@ -121,7 +121,8 @@ require("lazy").setup({
     end,
   },
 
-  { "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+  -- { "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+  { "nvimtools/none-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
   "NMAC427/guess-indent.nvim",
   { "nvim-telescope/telescope.nvim",   tag = "0.1.2",                                     dependencies = { "nvim-lua/plenary.nvim" } },
   { "debugloop/telescope-undo.nvim",   dependencies = { "nvim-telescope/telescope.nvim" } },
@@ -146,17 +147,25 @@ require("lazy").setup({
 
   {
     "mfussenegger/nvim-dap",
+    lazy = true,
     dependencies = {
       { "rcarriga/nvim-dap-ui", dependencies = { "nvim-neotest/nvim-nio" } },
     },
   },
   {
+    "mfussenegger/nvim-dap-python",
+    lazy = true,
+    dependencies = {
+      { "rcarriga/nvim-dap" },
+    },
+  },
+  {
     "rcarriga/nvim-dap-ui",
+    lazy = true,
     dependencies = { "nvim-neotest/nvim-nio" },
     config = function(_, opts)
       require("dapui").setup(opts)
     end,
-
   },
 
   -- LANGUAGE SPECIFICS
@@ -198,6 +207,7 @@ require("lazy").setup({
   -- install 'rust-src' package for autocompletion to work
   {
     "rust-lang/rust.vim",
+    lazy = true,
     ft = "rust",
     init = function()
       vim.g.rustfmt_autosave = 1
@@ -232,6 +242,7 @@ require("auto-session").setup()
 require("nvim-autopairs").setup()
 require("line")
 require("buffline")
+require("cmdline")
 require("tree")
 require("configs.lsp")
 require("completion")
@@ -251,6 +262,5 @@ require('gitsigns').setup()
 -- Settings (After plugin load)
 require("mappings")
 require("configs.whichkey")
-require("cmdline")
 
-require("configs.dap.rust")
+require("configs.dap.config")

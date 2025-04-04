@@ -21,3 +21,6 @@ dap.adapters.codelldb = {
     args = { "--port", "${port}" },
   }
 }
+
+require('dap-python').setup()
+

@@ -47,3 +47,17 @@ lspconfig.lua_ls.setup({
 })
 
 lspconfig.lemminx.setup({})
+
+lspconfig.pylsp.setup {
+    capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    settings = {
+        pylsp = {
+            plugins = {
+                jedi_completion = {
+                    include_params = true,
+                },
+            },
+        },
+    },
+}
+lspconfig.ruff.setup({})

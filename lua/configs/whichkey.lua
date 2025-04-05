@@ -21,7 +21,7 @@ wk.add({
   { "<leader>l",  group = "[L]SP" },
   { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",               desc = " LSP Code Action" },
   { "<leader>ld", "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>", desc = "LSP Buffer Diagnostics" },
-  { "<leader>lw", "<cmd>Telescope diagnostics<cr>",                       desc = "LSP Diagnostics" },
+  { "<leader>lw", "<cmd>Telescope diagnostics severity_bound=ERROR<cr>",  desc = "LSP Diagnostics" },
   { "<leader>lR", "<cmd>lua vim.lsp.buf.references()<cr>",                desc = "LSP References" },
   { "<leader>lf", "<cmd>lua vim.lsp.buf.format({ async = true })<cr>",    desc = "LSP Format" },
   { "<leader>li", "<cmd>LspInfo<cr>",                                     desc = "LSP Info" },
@@ -110,18 +110,18 @@ wk.add({
 
 wk.add({
   { "<leader>t",  group = "[t]erminal" },
-  { "<leader>th", "<cmd>FloatermNew --height=0.3 --wintype=split<cr>",      desc = "[H]orizontal" },
-  { "<leader>tv", "<cmd>FloatermNew --height=0.3 --wintype=vsplit<cr>",      desc = "[V]ertical" },
-  { "<leader>tf", "<cmd>FloatermNew --height=0.6 --width=0.6<cr>",      desc = "[f]loat" },
-  { "<leader>tF", "<cmd>tabnew<cr><cmd>FloatermNew --height=1.0 --width=1.0<cr>",      desc = "[F]ull" },
+  { "<leader>th", "<cmd>FloatermNew --height=0.3 --wintype=split<cr>",            desc = "[H]orizontal" },
+  { "<leader>tv", "<cmd>FloatermNew --height=0.3 --wintype=vsplit<cr>",           desc = "[V]ertical" },
+  { "<leader>tf", "<cmd>FloatermNew --height=0.6 --width=0.6<cr>",                desc = "[f]loat" },
+  { "<leader>tF", "<cmd>tabnew<cr><cmd>FloatermNew --height=1.0 --width=1.0<cr>", desc = "[F]ull" },
 })
 
 wk.add({
   { "<leader>T",  group = "[T]ab" },
-  { "<leader>TN", "<cmd>tabnew<cr>",      desc = "[N]ew" },
+  { "<leader>TN", "<cmd>tabnew<cr>",       desc = "[N]ew" },
   { "<leader>Tn", "<cmd>tabnext<cr>",      desc = "[N]ext" },
-  { "<leader>Tp", "<cmd>tabprevious<cr>",      desc = "[P]revious" },
-  { "<leader>Tc", "<cmd>tabclose<cr><cr>",      desc = "[C]lose" },
+  { "<leader>Tp", "<cmd>tabprevious<cr>",  desc = "[P]revious" },
+  { "<leader>Tc", "<cmd>tabclose<cr><cr>", desc = "[C]lose" },
 })
 
 wk.add({

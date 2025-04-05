@@ -18,10 +18,10 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
 
 require("lazy").setup({
-  { "catppuccin/nvim",             name = "catppuccin" },
+  { "catppuccin/nvim",       name = "catppuccin" },
   "nvim-lualine/lualine.nvim",
   "rmagatti/auto-session",
-  { "windwp/nvim-autopairs",         event = "InsertEnter" },
+  { "windwp/nvim-autopairs", event = "InsertEnter" },
   "nvim-tree/nvim-tree.lua",
   "nvim-tree/nvim-web-devicons",
   { 'akinsho/bufferline.nvim',       version = "*",                        dependencies = 'nvim-tree/nvim-web-devicons' },
@@ -64,8 +64,7 @@ require("lazy").setup({
     "williamboman/mason-lspconfig.nvim",
     config = function(_, opts)
       require("mason-lspconfig").setup {
-        ensure_installed = { "lua_ls", "rust_analyzer", "lemminx", "jdtls" },
-        ensure_installed = { "lua_ls", "lemminx", "jdtls", "pylsp", "ruff" },
+        ensure_installed = { "lua_ls", "rust_analyzer", "lemminx", "jdtls", "pylsp", "ruff" },
         automatic_installation = true,
       }
     end
@@ -122,12 +121,10 @@ require("lazy").setup({
     end,
   },
 
-  -- { "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-  { "nvimtools/none-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+  { "nvimtools/none-ls.nvim",        dependencies = { "nvim-lua/plenary.nvim" } },
   "NMAC427/guess-indent.nvim",
-  { "nvim-telescope/telescope.nvim",   tag = "0.1.8",                                     dependencies = { "nvim-lua/plenary.nvim" } },
-  { "debugloop/telescope-undo.nvim",   dependencies = { "nvim-telescope/telescope.nvim" } },
-  -- "klen/nvim-config-local",
+  { "nvim-telescope/telescope.nvim", tag = "0.1.8",                                     dependencies = { "nvim-lua/plenary.nvim" } },
+  { "debugloop/telescope-undo.nvim", dependencies = { "nvim-telescope/telescope.nvim" } },
   "rcarriga/nvim-notify",
   "mrded/nvim-lsp-notify",
   "lewis6991/gitsigns.nvim",

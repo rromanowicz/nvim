@@ -20,7 +20,7 @@ vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
 require("lazy").setup({
   { "catppuccin/nvim",       name = "catppuccin" },
   "nvim-lualine/lualine.nvim",
-  "rmagatti/auto-session",
+  -- "rmagatti/auto-session",
   { "windwp/nvim-autopairs", event = "InsertEnter" },
   "nvim-tree/nvim-tree.lua",
   "nvim-tree/nvim-web-devicons",
@@ -50,6 +50,15 @@ require("lazy").setup({
     }
   },
 
+  {
+    "nvzone/showkeys",
+    cmd = "ShowkeysToggle",
+    opts = {
+      timeout = 3,
+      maxkeys = 10,
+      -- more opts
+    }
+  },
 
   "neovim/nvim-lspconfig",
   {
@@ -71,19 +80,25 @@ require("lazy").setup({
   },
 
   {
+    "L3MON4D3/LuaSnip",
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    build = "make install_jsregexp",
+    dependencies = "rafamadriz/friendly-snippets",
+  },
+  {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-      {
-        -- snippet plugin
-        "L3MON4D3/LuaSnip",
-        dependencies = "rafamadriz/friendly-snippets",
-        opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-        config = function(_, opts)
-          require("luasnip").config.set_config(opts)
-          require "configs.luasnip"
-        end,
-      },
+      -- {
+      --   -- snippet plugin
+      --   "L3MON4D3/LuaSnip",
+      --   dependencies = "rafamadriz/friendly-snippets",
+      --   opts = { history = true, updateevents = "TextChanged,TextChangedI" },
+      --   config = function(_, opts)
+      --     require("luasnip").config.set_config(opts)
+      --     require "configs.luasnip"
+      --   end,
+      -- },
 
       -- autopairing of (){}[] etc
       {
@@ -140,7 +155,6 @@ require("lazy").setup({
       formatters_by_ft = { lua = { "stylua" } },
     },
   },
-
 
 
   {
@@ -236,7 +250,7 @@ require("lazy").setup({
 require("general")
 
 -- Plugins
-require("auto-session").setup()
+-- require("auto-session").setup()
 require("nvim-autopairs").setup()
 require("line")
 require("buffline")
@@ -262,3 +276,6 @@ require("mappings")
 require("configs.whichkey")
 
 require("configs.dap.config")
+
+require("configs.luasnip")
+require("macros")

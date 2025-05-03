@@ -61,3 +61,5 @@ require("catppuccin").setup({
 vim.cmd("colorscheme catppuccin-macchiato")
 
 vim.diagnostic.config({ virtual_lines = true })
+
+opt.clipboard = 'unnamedplus'

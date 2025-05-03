@@ -109,6 +109,12 @@ wk.add({
 })
 
 wk.add({
+  { "<leader}m", group = "[M]acros" },
+  { "<leader>ml", "@p", desc = "L", mode = "v" },
+  { "<leader>ml", "@l", desc = "L", mode = "n" }
+})
+
+wk.add({
   { "<leader>t",  group = "[t]erminal" },
   { "<leader>th", "<cmd>FloatermNew --height=0.3 --wintype=split<cr>",            desc = "[H]orizontal" },
   { "<leader>tv", "<cmd>FloatermNew --height=0.3 --wintype=vsplit<cr>",           desc = "[V]ertical" },
@@ -135,4 +141,5 @@ wk.add({
   { "<leader>/", "gc",                                      desc = "toggle comment",   remap = true, mode = "v", hidden = true },
   { "<leader>z", ":lua require('zen-mode').toggle({})<cr>", desc = "Toggle [z]enmode", hidden = true },
   { "<leader>x", "<cmd>bd<cr>",                             desc = "Close buffer",     hidden = true },
+  { "<leader>s", ":ShowkeysToggle<cr>",                         desc = "ShowKeys",         hidden = true },
 })

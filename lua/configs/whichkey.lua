@@ -143,3 +143,13 @@ wk.add({
   { "<leader>x", "<cmd>bd<cr>",                             desc = "Close buffer",     hidden = true },
   { "<leader>s", ":ShowkeysToggle<cr>",                         desc = "ShowKeys",         hidden = true },
 })
+
+wk.add({
+  { "<leader>a", group = "[A]Exr"},
+  { "<leader>a;", "<cmd>AExrInput n<cr>", desc="Cmd", mode="n"},
+  { "<leader>a;", "<cmd>AExrInput v<cr>", desc="Cmd", mode="v"},
+  { "<leader>am", "<cmd>AExrMenu n<cr>", desc="Dev", mode="n"},
+  { "<leader>am", "<cmd>AExrMenu v<cr>", desc="Dev", mode="v"},
+  { "<leader>ad", "<cmd>AExrDev n<cr>", desc="Dev", mode="n"},
+  { "<leader>ad", "<cmd>AExrDev v<cr>", desc="Dev", mode="v"},
+})

@@ -18,6 +18,31 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
 
 require("lazy").setup({
+
+  {
+    dir = "~/git/aexr.nvim",
+    opts = {
+      items = {
+        n = {
+          { 80, "Custom_1", "CUSTOM1(", "_CUSTOM1)" },
+        },
+        v = {
+          { 81, "Custom_2", "CUSTOM2(", "_CUSTOM2)" },
+        },
+      }
+    }
+  },
+
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
+  },
+
   { "catppuccin/nvim",       name = "catppuccin" },
   "nvim-lualine/lualine.nvim",
   -- "rmagatti/auto-session",
@@ -279,3 +304,6 @@ require("configs.dap.config")
 
 require("configs.luasnip")
 require("macros")
+require('render-markdown').setup({
+    completions = { lsp = { enabled = true } },
+})

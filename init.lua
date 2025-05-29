@@ -24,10 +24,10 @@ require("lazy").setup({
     opts = {
       items = {
         n = {
-          { 80, "Custom_1", "CUSTOM1(", "_CUSTOM1)" },
+          { "Custom_1", "CUSTOM1(", "_CUSTOM1)" },
         },
         v = {
-          { 81, "Custom_2", "CUSTOM2(", "_CUSTOM2)" },
+          { "Custom_2", "CUSTOM2(", "_CUSTOM2)" },
         },
       }
     }
@@ -305,5 +305,5 @@ require("configs.dap.config")
 require("configs.luasnip")
 require("macros")
 require('render-markdown').setup({
-    completions = { lsp = { enabled = true } },
+  completions = { lsp = { enabled = true } },
 })

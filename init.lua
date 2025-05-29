@@ -24,10 +24,10 @@ require("lazy").setup({
     opts = {
       items = {
         n = {
-          { 80, "Custom_1", "CUSTOM1(", "_CUSTOM1)" },
+          { "Custom_1", "CUSTOM1(", "_CUSTOM1)" },
         },
         v = {
-          { 81, "Custom_2", "CUSTOM2(", "_CUSTOM2)" },
+          { "Custom_2", "CUSTOM2(", "_CUSTOM2)" },
         },
       }
     }
@@ -38,15 +38,17 @@ require("lazy").setup({
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-    ---@module 'render-markdown'
-    ---@type render.md.UserConfig
     opts = {},
   },
 
-  { "catppuccin/nvim",       name = "catppuccin" },
+  -- { "catppuccin/nvim",       name = "catppuccin" },
+  {
+    "olimorris/onedarkpro.nvim",
+    priority = 1000, -- Ensure it loads first
+  },
   "nvim-lualine/lualine.nvim",
   -- "rmagatti/auto-session",
-  { "windwp/nvim-autopairs", event = "InsertEnter" },
+  { "windwp/nvim-autopairs",         event = "InsertEnter" },
   "nvim-tree/nvim-tree.lua",
   "nvim-tree/nvim-web-devicons",
   { 'akinsho/bufferline.nvim',       version = "*",                        dependencies = 'nvim-tree/nvim-web-devicons' },
@@ -305,5 +307,5 @@ require("configs.dap.config")
 require("configs.luasnip")
 require("macros")
 require('render-markdown').setup({
-    completions = { lsp = { enabled = true } },
+  completions = { lsp = { enabled = true } },
 })

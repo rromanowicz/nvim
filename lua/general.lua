@@ -44,21 +44,7 @@ opt.termguicolors = true
 
 vim.g.mapleader = " "
 
-require("catppuccin").setup({
-    flavor = "macchiato",
-    -- transparent_background = true,
-    -- color_overrides = {
-    --     mocha = {
-    --         base = "#000000",
-    --         mantle = "#000000",
-    --         crust = "#000000",
-    --     },
-    -- },
-    integrations = {
-        notify = true,
-    },
-})
-vim.cmd("colorscheme catppuccin-macchiato")
+require("plugins.theme")
 
 vim.diagnostic.config({ virtual_lines = true })
 

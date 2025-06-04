@@ -109,9 +109,9 @@ wk.add({
 })
 
 wk.add({
-  { "<leader}m", group = "[M]acros" },
-  { "<leader>ml", "@p", desc = "L", mode = "v" },
-  { "<leader>ml", "@l", desc = "L", mode = "n" }
+  { "<leader}m",  group = "[M]acros" },
+  { "<leader>ml", "@p",              desc = "L", mode = "v" },
+  { "<leader>ml", "@l",              desc = "L", mode = "n" }
 })
 
 wk.add({
@@ -141,15 +141,16 @@ wk.add({
   { "<leader>/", "gc",                                      desc = "toggle comment",   remap = true, mode = "v", hidden = true },
   { "<leader>z", ":lua require('zen-mode').toggle({})<cr>", desc = "Toggle [z]enmode", hidden = true },
   { "<leader>x", "<cmd>bd<cr>",                             desc = "Close buffer",     hidden = true },
-  { "<leader>s", ":ShowkeysToggle<cr>",                         desc = "ShowKeys",         hidden = true },
+  { "<leader>s", ":ShowkeysToggle<cr>",                     desc = "ShowKeys",         hidden = true },
 })
 
 wk.add({
-  { "<leader>a", group = "[A]Exr"},
-  { "<leader>a;", "<cmd>AExrInput n<cr>", desc="Cmd", mode="n"},
-  { "<leader>a;", "<cmd>AExrInput v<cr>", desc="Cmd", mode="v"},
-  { "<leader>am", "<cmd>AExrMenu n<cr>", desc="Dev", mode="n"},
-  { "<leader>am", "<cmd>AExrMenu v<cr>", desc="Dev", mode="v"},
-  { "<leader>ad", "<cmd>AExrDev n<cr>", desc="Dev", mode="n"},
-  { "<leader>ad", "<cmd>AExrDev v<cr>", desc="Dev", mode="v"},
+  { "<leader>a",  group = "[A]Exr" },
+  { "<leader>a;", "<cmd>AExrInput n<cr>",         desc = "Cmd",              mode = "n" },
+  { "<leader>a;", "<cmd>AExrInput v<cr>",         desc = "Cmd",              mode = "v" },
+  { "<leader>am", "<cmd>AExrMenu n<cr>",          desc = "Dev",              mode = "n" },
+  { "<leader>am", "<cmd>AExrMenu v<cr>",          desc = "Dev",              mode = "v" },
+  { "<leader>ad", "<cmd>AExrDev n<cr>",           desc = "Dev",              mode = "n" },
+  { "<leader>ad", "<cmd>AExrDev v<cr>",           desc = "Dev",              mode = "v" },
+  { "<leader>af", "<cmd>AExrWeatherForecast<cr>", desc = "Weather forecast", mode = "n" },
 })

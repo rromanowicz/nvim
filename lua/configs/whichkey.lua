@@ -109,9 +109,9 @@ wk.add({
 })
 
 wk.add({
-  { "<leader}m", group = "[M]acros" },
-  { "<leader>ml", "@p", desc = "L", mode = "v" },
-  { "<leader>ml", "@l", desc = "L", mode = "n" }
+  { "<leader}m",  group = "[M]acros" },
+  { "<leader>ml", "@p",              desc = "L", mode = "v" },
+  { "<leader>ml", "@l",              desc = "L", mode = "n" }
 })
 
 wk.add({
@@ -141,7 +141,7 @@ wk.add({
   { "<leader>/", "gc",                                      desc = "toggle comment",   remap = true, mode = "v", hidden = true },
   { "<leader>z", ":lua require('zen-mode').toggle({})<cr>", desc = "Toggle [z]enmode", hidden = true },
   { "<leader>x", "<cmd>bd<cr>",                             desc = "Close buffer",     hidden = true },
-  { "<leader>s", ":ShowkeysToggle<cr>",                         desc = "ShowKeys",         hidden = true },
+  { "<leader>s", ":ShowkeysToggle<cr>",                     desc = "ShowKeys",         hidden = true },
 })
 
 wk.add({

@@ -32,7 +32,7 @@ require("lazy").setup({
           { "Custom_2", "CUSTOM2(", "_CUSTOM2)" },
         },
       }
-    }
+    },
   },
   {
     "startup-nvim/startup.nvim",
@@ -49,6 +49,9 @@ require("lazy").setup({
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
     opts = {},
   },
+
+  { "norcalli/nvim-colorizer.lua" },
+  { "doums/darcula" },
 
   { "catppuccin/nvim",       name = "catppuccin" },
   {
@@ -318,3 +321,4 @@ require("macros")
 require('render-markdown').setup({
   completions = { lsp = { enabled = true } },
 })
+require'colorizer'.setup()

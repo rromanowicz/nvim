@@ -21,10 +21,12 @@ require("lazy").setup({
 
   {
     dir = "~/git/aexr.nvim",
+    dependencies = { "MunifTanjim/nui.nvim", "grapp-dev/nui-components.nvim" },
     opts = {
-      items = {
+      weather_location = "Warszawa",
+      menu_items = {
         n = {
-          { "Custom_1", "CUSTOM1(", "_CUSTOM1)" },
+          { "Weather", "AExrWeather ", "" },
         },
         v = {
           { "Custom_2", "CUSTOM2(", "_CUSTOM2)" },
@@ -36,7 +38,7 @@ require("lazy").setup({
     "startup-nvim/startup.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim", "nvim-telescope/telescope-file-browser.nvim" },
     config = function()
-      require"startup".setup(require"plugins.startup_nvim")
+      require "startup".setup(require "plugins.startup_nvim")
     end
   },
 
@@ -55,7 +57,7 @@ require("lazy").setup({
   },
   "nvim-lualine/lualine.nvim",
   -- "rmagatti/auto-session",
-  { "windwp/nvim-autopairs",         event = "InsertEnter" },
+  { "windwp/nvim-autopairs", event = "InsertEnter" },
   "nvim-tree/nvim-tree.lua",
   "nvim-tree/nvim-web-devicons",
   { 'akinsho/bufferline.nvim',       version = "*",                        dependencies = 'nvim-tree/nvim-web-devicons' },

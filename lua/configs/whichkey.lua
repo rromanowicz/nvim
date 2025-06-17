@@ -152,4 +152,5 @@ wk.add({
   { "<leader>am", "<cmd>AExrMenu v<cr>", desc="Dev", mode="v"},
   { "<leader>ad", "<cmd>AExrDev n<cr>", desc="Dev", mode="n"},
   { "<leader>ad", "<cmd>AExrDev v<cr>", desc="Dev", mode="v"},
+  { "<leader>af", "<cmd>AExrWeather<cr>", desc = "Weather forecast", mode = "n" },
 })

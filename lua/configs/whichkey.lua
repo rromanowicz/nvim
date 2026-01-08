@@ -145,12 +145,12 @@ wk.add({
 })
 
 wk.add({
-  { "<leader>a",  group = "[A]Exr" },
-  { "<leader>a;", "<cmd>AExrInput n<cr>",         desc = "Cmd",              mode = "n" },
-  { "<leader>a;", "<cmd>AExrInput v<cr>",         desc = "Cmd",              mode = "v" },
-  { "<leader>am", "<cmd>AExrMenu n<cr>",          desc = "Dev",              mode = "n" },
-  { "<leader>am", "<cmd>AExrMenu v<cr>",          desc = "Dev",              mode = "v" },
-  { "<leader>ad", "<cmd>AExrDev n<cr>",           desc = "Dev",              mode = "n" },
-  { "<leader>ad", "<cmd>AExrDev v<cr>",           desc = "Dev",              mode = "v" },
-  { "<leader>af", "<cmd>AExrWeatherForecast<cr>", desc = "Weather forecast", mode = "n" },
+  { "<leader>a", group = "[A]Exr"},
+  { "<leader>a;", "<cmd>AExrInput n<cr>", desc="Cmd", mode="n"},
+  { "<leader>a;", "<cmd>AExrInput v<cr>", desc="Cmd", mode="v"},
+  { "<leader>am", "<cmd>AExrMenu n<cr>", desc="Dev", mode="n"},
+  { "<leader>am", "<cmd>AExrMenu v<cr>", desc="Dev", mode="v"},
+  { "<leader>ad", "<cmd>AExrDev n<cr>", desc="Dev", mode="n"},
+  { "<leader>ad", "<cmd>AExrDev v<cr>", desc="Dev", mode="v"},
+  { "<leader>af", "<cmd>AExrWeather<cr>", desc = "Weather forecast", mode = "n" },
 })

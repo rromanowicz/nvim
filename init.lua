@@ -23,10 +23,10 @@ require("lazy").setup({
     dir = "~/git/aexr.nvim",
     dependencies = { "MunifTanjim/nui.nvim", "grapp-dev/nui-components.nvim" },
     opts = {
-      weather_location = "Warsaw",
+      weather_location = "Warszawa",
       menu_items = {
         n = {
-          { "Custom_1", "CUSTOM1(", "_CUSTOM1)" },
+          { "Weather", "AExrWeather ", "" },
         },
         v = {
           { "Custom_2", "CUSTOM2(", "_CUSTOM2)" },

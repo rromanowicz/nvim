@@ -62,3 +62,15 @@ lspconfig.pylsp.setup {
     },
 }
 lspconfig.ruff.setup({})
+
+lspconfig.gopls.setup({
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
+})

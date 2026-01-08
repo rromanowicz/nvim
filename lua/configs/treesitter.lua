@@ -4,7 +4,7 @@ pcall(function()
 end)
 
 return {
-  ensure_installed = { "python", "rust", "lua", "luadoc", "printf", "vim", "vimdoc", "markdown", "markdown_inline" },
+  ensure_installed = { "python", "rust", "lua", "go", "luadoc", "printf", "vim", "vimdoc", "markdown", "markdown_inline" },
 
   highlight = {
     enable = true,

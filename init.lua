@@ -53,14 +53,14 @@ require("lazy").setup({
   { "norcalli/nvim-colorizer.lua" },
   { "doums/darcula" },
 
-  { "catppuccin/nvim",       name = "catppuccin" },
+  { "catppuccin/nvim",            name = "catppuccin" },
   {
     "olimorris/onedarkpro.nvim",
     priority = 1000, -- Ensure it loads first
   },
   "nvim-lualine/lualine.nvim",
   -- "rmagatti/auto-session",
-  { "windwp/nvim-autopairs", event = "InsertEnter" },
+  { "windwp/nvim-autopairs",         event = "InsertEnter" },
   "nvim-tree/nvim-tree.lua",
   "nvim-tree/nvim-web-devicons",
   { 'akinsho/bufferline.nvim',       version = "*",                        dependencies = 'nvim-tree/nvim-web-devicons' },
@@ -112,7 +112,7 @@ require("lazy").setup({
     "williamboman/mason-lspconfig.nvim",
     config = function(_, opts)
       require("mason-lspconfig").setup {
-        ensure_installed = { "lua_ls", "rust_analyzer", "lemminx", "jdtls", "pylsp", "ruff" },
+        ensure_installed = { "lua_ls", "rust_analyzer", "lemminx", "jdtls", "pylsp", "ruff", "gopls" },
         automatic_installation = true,
       }
     end
@@ -283,6 +283,36 @@ require("lazy").setup({
       crates.show()
     end,
   },
+
+
+  -- GO
+  {
+    "ray-x/go.nvim",
+    dependencies = { -- optional packages
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = function()
+      require("go").setup(opts)
+      local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*.go",
+        callback = function()
+          require('go.format').goimports()
+        end,
+        group = format_sync_grp,
+      })
+      return {
+        -- lsp_keymaps = false,
+        -- other options
+      }
+    end,
+    event = { "CmdlineEnter" },
+    ft = { "go", 'gomod' },
+    build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+  }
+
 })
 
 -- Settings
@@ -321,4 +351,5 @@ require("macros")
 require('render-markdown').setup({
   completions = { lsp = { enabled = true } },
 })
-require'colorizer'.setup()
+require 'colorizer'.setup()
+require('go').setup()

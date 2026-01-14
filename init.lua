@@ -289,6 +289,9 @@ require("lazy").setup({
   {
     "ray-x/go.nvim",
     dependencies = { -- optional packages
+      "mfussenegger/nvim-dap", -- Debug Adapter Protocol
+      "rcarriga/nvim-dap-ui",
+      "theHamsta/nvim-dap-virtual-text",
       "ray-x/guihua.lua",
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",

@@ -51,26 +51,12 @@ vim.api.nvim_set_keymap('t', '<C-Esc>', '<C-\\><C-n>', { noremap = true })
 
 -- Plugins
 vim.pack.add({
-  { src = "https://github.com/catppuccin/nvim",           name = "catppuccin" },
-  { src = "https://github.com/olimorris/onedarkpro.nvim", name = "onedarkpro" },
+  { src = "https://github.com/catppuccin/nvim",                           name = "catppuccin" },
+  { src = "https://github.com/olimorris/onedarkpro.nvim",                 name = "onedarkpro" },
   { src = "https://github.com/tpope/vim-sleuth" },
   { src = "https://github.com/nvim-lualine/lualine.nvim" },
   { src = "https://github.com/windwp/nvim-autopairs" },
-  {
-    src = "https://github.com/nvim-tree/nvim-tree.lua",
-    config = function()
-      require("nvim-tree").setup({
-        view = {
-          adaptive_size = true,
-        },
-        update_focused_file = {
-          enable = true,
-        },
-        sync_root_with_cwd = true,
-        respect_buf_cwd = true,
-      })
-    end
-  },
+  { src = "https://github.com/nvim-tree/nvim-tree.lua", },
   { src = "https://github.com/nvim-tree/nvim-web-devicons" },
   { src = "https://github.com/akinsho/bufferline.nvim" },
   { src = "https://github.com/voldikss/vim-floaterm" },
@@ -89,67 +75,63 @@ vim.pack.add({
       require("tiny-cmdline").setup({
         border = nil,
       })
-      vim.api.nvim_set_hl(0, "TinyCmdlineBorder", { fg = "#282c34" })
-      vim.api.nvim_set_hl(0, "TinyCmdlineNormal", { bg = "#282c34" })
     end,
   },
   { src = "https://github.com/startup-nvim/startup.nvim" },
 })
 
-require("nvim-tree").setup()
+-- vim.api.nvim_set_hl(0, "TinyCmdlineBorder", { fg = "#282c34" })
+vim.api.nvim_set_hl(0, "TinyCmdlineNormal", { bg = "#282c34" })
+
+require("nvim-tree").setup({
+  view = {
+    adaptive_size = true,
+  },
+  update_focused_file = {
+    enable = true,
+  },
+  sync_root_with_cwd = true,
+  respect_buf_cwd = true,
+})
 require("plugins.theme")
 require("configs.whichkey")
 require("line")
 require("buffline")
 
 vim.pack.add({
-  {
-    src = "https://github.com/Saghen/blink.cmp",
-    version = "v1.6.0",
-    config = function()
-      require("blink.cmp").setup({
-        keymap = {
-          preset = 'default',
-          ['<CR>'] = { 'select_and_accept', 'fallback' },
-        },
-        appearance = {
-          nerd_font_variant = 'mono'
-        },
-        completion = { documentation = { auto_show = true } },
-        sources = {
-          default = { 'lsp', 'path', 'snippets', 'buffer' },
-        },
-        fuzzy = { implementation = "prefer_rust" }
-      })
-    end
-  },
+  { src = "https://github.com/Saghen/blink.cmp",                   version = "v1.6.0", },
   { src = "https://github.com/mason-org/mason.nvim.git" },
-  {
-    src = "https://github.com/mason-org/mason-lspconfig.nvim.git",
-    config = function()
-      require("mason-lspconfig").setup {
-        ensure_installed = { "lua_ls", "rust_analyzer", "lemminx", "jdtls", "pylsp", "ruff", "gopls", "bashls" },
-        automatic_installation = true,
-      }
-    end
-  },
+  { src = "https://github.com/mason-org/mason-lspconfig.nvim.git", },
   { src = "https://github.com/neovim/nvim-lspconfig.git" },
   { src = "https://github.com/rafamadriz/friendly-snippets" },
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-  {
-    src = "https://github.com/romus204/tree-sitter-manager.nvim",
-    config = function()
-      require("tree-sitter-manager").setup({
-        ensure_installed = { "python", "rust", "lua", "go", "luadoc", "printf", "vim", "vimdoc", "markdown", "markdown_inline" },
-      })
-    end
-  }
+  { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+  { src = "https://github.com/romus204/tree-sitter-manager.nvim", }
 })
 
-require("blink.cmp").setup()
-require("tree-sitter-manager").setup()
+require("blink.cmp").setup({
+  keymap = {
+    preset = 'default',
+    ['<CR>'] = { 'select_and_accept', 'fallback' },
+    ['<S-Tab>'] = { 'select_prev', 'fallback' },
+    ['<Tab>'] = { 'select_next', 'fallback' },
+  },
+  appearance = {
+    nerd_font_variant = 'mono'
+  },
+  completion = { documentation = { auto_show = true } },
+  sources = {
+    default = { 'lsp', 'path', 'snippets', 'buffer' },
+  },
+  fuzzy = { implementation = "prefer_rust" }
+})
+require("tree-sitter-manager").setup({
+  ensure_installed = { "python", "rust", "lua", "go", "luadoc", "printf", "vim", "vimdoc", "markdown", "markdown_inline" },
+})
 require("mason").setup()
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup {
+  ensure_installed = { "lua_ls", "rust_analyzer", "lemminx", "jdtls", "pylsp", "ruff", "gopls", "bashls" },
+  automatic_installation = true,
+}
 require("nvim-treesitter").setup()
 
 vim.pack.add({

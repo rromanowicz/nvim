@@ -1,355 +1,185 @@
--- Preload
-require("preload")
+vim.g.mapleader = " "
 
--- Load lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
+vim.diagnostic.config({ virtual_lines = true })
 
-vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.signcolumn = "yes"
+vim.o.cursorline = true
+vim.o.list = true
+vim.o.showtabline = 2
+vim.o.tabstop = 2
+vim.o.expandtab = true
+vim.o.autoindent = true
+vim.o.smartindent = true
+vim.o.shiftwidth = 2
+vim.o.encoding = "utf-8"
+vim.o.spell = true
+vim.o.pumheight = 15
+vim.o.pumblend = 15
+vim.o.syntax = "on"
+vim.o.incsearch = true
+vim.o.hlsearch = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.undofile = true
+vim.o.autoread = true
+vim.o.termguicolors = true
+vim.o.clipboard = 'unnamedplus'
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+-- vim.opt.termguicolors = true
+require("vim._core.ui2").enable({})
 
-require("lazy").setup({
+vim.keymap.set("n", "<c-n>", ":NvimTreeToggle<cr>")
+vim.keymap.set("n", "<Tab>", ":bnext<cr>")
+vim.keymap.set("n", "<s-Tab>", ":bprev<cr>")
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
+vim.keymap.set("n", "<C-S-p>", "<cmd> vertical resize -5 <CR>", { desc = "Vertical resize -5" })
+vim.keymap.set("n", "<C-S-\\>", "<cmd> vertical resize +5 <CR>", { desc = "Vertical resize +5" })
+vim.keymap.set("n", ";", ":", { desc = "CMD enter command mode" })
+vim.keymap.set("i", "jk", "<ESC>")
+vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
+vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
+vim.keymap.set("v", "y", "\"+y")
+vim.keymap.set("v", "x", "\"+x")
+vim.keymap.set("n", "p", "\"+p")
+vim.api.nvim_set_keymap('t', '<C-Esc>', '<C-\\><C-n>', { noremap = true })
 
+-- Plugins
+vim.pack.add({
+  { src = "https://github.com/catppuccin/nvim",           name = "catppuccin" },
+  { src = "https://github.com/olimorris/onedarkpro.nvim", name = "onedarkpro" },
+  { src = "https://github.com/tpope/vim-sleuth" },
+  { src = "https://github.com/nvim-lualine/lualine.nvim" },
+  { src = "https://github.com/windwp/nvim-autopairs" },
   {
-    dir = "~/git/aexr.nvim",
-    dependencies = { "MunifTanjim/nui.nvim", "grapp-dev/nui-components.nvim" },
-    opts = {
-      weather_location = "Warszawa",
-      menu_items = {
-        n = {
-          { "Weather", "AExrWeather ", "" },
-        },
-        v = {
-          { "Custom_2", "CUSTOM2(", "_CUSTOM2)" },
-        },
-      }
-    },
-  },
-  {
-    "startup-nvim/startup.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim", "nvim-telescope/telescope-file-browser.nvim" },
+    src = "https://github.com/nvim-tree/nvim-tree.lua",
     config = function()
-      require "startup".setup(require "plugins.startup_nvim")
+      require("nvim-tree").setup({
+        view = {
+          adaptive_size = true,
+        },
+        update_focused_file = {
+          enable = true,
+        },
+        sync_root_with_cwd = true,
+        respect_buf_cwd = true,
+      })
     end
   },
-
+  { src = "https://github.com/nvim-tree/nvim-web-devicons" },
+  { src = "https://github.com/akinsho/bufferline.nvim" },
+  { src = "https://github.com/voldikss/vim-floaterm" },
+  { src = "https://github.com/MunifTanjim/nui.nvim" },
+  { src = "https://github.com/folke/which-key.nvim" },
+  { src = "https://github.com/folke/zen-mode.nvim", },
+  { src = "https://github.com/nvzone/showkeys", },
+  { src = "https://github.com/nvim-tree/nvim-tree.lua" },
+  { src = "https://github.com/nvim-telescope/telescope.nvim" },
+  { src = "https://github.com/nvim-lua/plenary.nvim" },
+  { src = "https://github.com/nvim-telescope/telescope-file-browser.nvim" },
   {
-    'MeanderingProgrammer/render-markdown.nvim',
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-    opts = {},
-  },
-
-  { "norcalli/nvim-colorizer.lua" },
-  { "doums/darcula" },
-
-  { "catppuccin/nvim",            name = "catppuccin" },
-  {
-    "olimorris/onedarkpro.nvim",
-    priority = 1000, -- Ensure it loads first
-  },
-  "nvim-lualine/lualine.nvim",
-  -- "rmagatti/auto-session",
-  { "windwp/nvim-autopairs",         event = "InsertEnter" },
-  "nvim-tree/nvim-tree.lua",
-  "nvim-tree/nvim-web-devicons",
-  { 'akinsho/bufferline.nvim',       version = "*",                        dependencies = 'nvim-tree/nvim-web-devicons' },
-
-  { 'voldikss/vim-floaterm' },
-
-  { 'VonHeikemen/fine-cmdline.nvim', dependencies = 'MunifTanjim/nui.nvim' },
-
-  {
-    "folke/zen-mode.nvim",
-    -- lazy=false,
-    opts = {
-      window = {
-        width = 130,
-      },
-      plugins = {
-        -- disable some global vim options (vim.o...)
-        -- comment the lines to not apply the options
-        options = {
-          enabled = true,
-          ruler = false,   -- disables the ruler text in the cmd line area
-          showcmd = false, -- disables the command in the last line of the screen
-          laststatus = 0,  -- turn off the statusline in zen mode
-        },
-      }
-    }
-  },
-
-  {
-    "nvzone/showkeys",
-    cmd = "ShowkeysToggle",
-    opts = {
-      timeout = 3,
-      maxkeys = 10,
-      -- more opts
-    }
-  },
-
-  "neovim/nvim-lspconfig",
-  {
-    "williamboman/mason.nvim",
-    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
-    opts = function()
-      return require "configs.mason"
+    src = "https://github.com/rachartier/tiny-cmdline.nvim",
+    config = function()
+      vim.o.cmdheight = 0
+      require("tiny-cmdline").setup({
+        border = nil,
+      })
+      vim.api.nvim_set_hl(0, "TinyCmdlineBorder", { fg = "#282c34" })
+      vim.api.nvim_set_hl(0, "TinyCmdlineNormal", { bg = "#282c34" })
     end,
   },
+  { src = "https://github.com/startup-nvim/startup.nvim" },
+})
 
+require("nvim-tree").setup()
+require("plugins.theme")
+require("configs.whichkey")
+require("line")
+require("buffline")
+
+vim.pack.add({
   {
-    "williamboman/mason-lspconfig.nvim",
-    config = function(_, opts)
+    src = "https://github.com/Saghen/blink.cmp",
+    version = "v1.6.0",
+    config = function()
+      require("blink.cmp").setup({
+        keymap = {
+          preset = 'default',
+          ['<CR>'] = { 'select_and_accept', 'fallback' },
+        },
+        appearance = {
+          nerd_font_variant = 'mono'
+        },
+        completion = { documentation = { auto_show = true } },
+        sources = {
+          default = { 'lsp', 'path', 'snippets', 'buffer' },
+        },
+        fuzzy = { implementation = "prefer_rust" }
+      })
+    end
+  },
+  { src = "https://github.com/mason-org/mason.nvim.git" },
+  {
+    src = "https://github.com/mason-org/mason-lspconfig.nvim.git",
+    config = function()
       require("mason-lspconfig").setup {
-        ensure_installed = { "lua_ls", "rust_analyzer", "lemminx", "jdtls", "pylsp", "ruff", "gopls" },
+        ensure_installed = { "lua_ls", "rust_analyzer", "lemminx", "jdtls", "pylsp", "ruff", "gopls", "bashls" },
         automatic_installation = true,
       }
     end
   },
-
+  { src = "https://github.com/neovim/nvim-lspconfig.git" },
+  { src = "https://github.com/rafamadriz/friendly-snippets" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
   {
-    "L3MON4D3/LuaSnip",
-    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-    build = "make install_jsregexp",
-    dependencies = "rafamadriz/friendly-snippets",
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    dependencies = {
-      -- {
-      --   -- snippet plugin
-      --   "L3MON4D3/LuaSnip",
-      --   dependencies = "rafamadriz/friendly-snippets",
-      --   opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-      --   config = function(_, opts)
-      --     require("luasnip").config.set_config(opts)
-      --     require "configs.luasnip"
-      --   end,
-      -- },
-
-      -- autopairing of (){}[] etc
-      {
-        "windwp/nvim-autopairs",
-        opts = {
-          fast_wrap = {},
-          disable_filetype = { "TelescopePrompt", "vim" },
-        },
-        config = function(_, opts)
-          require("nvim-autopairs").setup(opts)
-        end,
-      },
-
-      -- cmp sources plugins
-      {
-        "saadparwaiz1/cmp_luasnip",
-        "hrsh7th/cmp-nvim-lua",
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-      },
-    },
-  },
-
-  {
-    "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-    build = ":TSUpdate",
-    opts = function()
-      return require "configs.treesitter"
-    end,
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-    end,
-  },
-
-  { "nvimtools/none-ls.nvim",        dependencies = { "nvim-lua/plenary.nvim" } },
-  "NMAC427/guess-indent.nvim",
-  { "nvim-telescope/telescope.nvim", tag = "0.1.8",                                     dependencies = { "nvim-lua/plenary.nvim" } },
-  { "debugloop/telescope-undo.nvim", dependencies = { "nvim-telescope/telescope.nvim" } },
-  "rcarriga/nvim-notify",
-  "mrded/nvim-lsp-notify",
-  "lewis6991/gitsigns.nvim",
-
-
-  { 'echasnovski/mini.nvim', version = '*' },
-  { "folke/which-key.nvim" },
-
-  -- formatting!
-  {
-    "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = { lua = { "stylua" } },
-    },
-  },
-
-
-  {
-    "mfussenegger/nvim-dap",
-    lazy = true,
-    dependencies = {
-      { "rcarriga/nvim-dap-ui", dependencies = { "nvim-neotest/nvim-nio" } },
-    },
-  },
-  {
-    "mfussenegger/nvim-dap-python",
-    lazy = true,
-    dependencies = {
-      { "rcarriga/nvim-dap" },
-    },
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-    lazy = true,
-    dependencies = { "nvim-neotest/nvim-nio" },
-    config = function(_, opts)
-      require("dapui").setup(opts)
-    end,
-  },
-
-  -- LANGUAGE SPECIFICS
-  --
-  -- Java
-  {
-    "JavaHello/spring-boot.nvim",
-    lazy = true,
-    dependencies = {
-      "nvim-java/nvim-java", -- or nvim-java, nvim-lspconfig
-    },
-    config = false
-  },
-  {
-    "nvim-java/nvim-java",
-    lazy = false,
-    dependencies = {
-      "nvim-java/lua-async-await",
-      "nvim-java/nvim-java-core",
-      "nvim-java/nvim-java-test",
-      "nvim-java/nvim-java-dap",
-      "MunifTanjim/nui.nvim",
-      "nvim-java/nvim-java-refactor",
-      {
-        "mfussenegger/nvim-dap",
-        dependencies = {
-          { "rcarriga/nvim-dap-ui", dependencies = { "nvim-neotest/nvim-nio" } },
-        },
-      },
-    },
-
+    src = "https://github.com/romus204/tree-sitter-manager.nvim",
     config = function()
-      require("java").setup(require("configs.java"))
-    end,
-  },
-
-
-  -- RUST
-  -- install 'rust-src' package for autocompletion to work
-  {
-    "rust-lang/rust.vim",
-    lazy = true,
-    ft = "rust",
-    init = function()
-      vim.g.rustfmt_autosave = 1
-    end,
-  },
-
-  {
-    'mrcjkb/rustaceanvim',
-    version = '^5', -- Recommended
-    lazy = false,   -- This plugin is already lazy
-  },
-
-  {
-    "saecki/crates.nvim",
-    ft = { "toml" },
-    config = function(_, opts)
-      local crates = require "crates"
-      crates.setup(opts)
-      require("cmp").setup.buffer {
-        sources = { { name = "crates" } },
-      }
-      crates.show()
-    end,
-  },
-
-
-  -- GO
-  {
-    "ray-x/go.nvim",
-    dependencies = { -- optional packages
-      "ray-x/guihua.lua",
-      "neovim/nvim-lspconfig",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    opts = function()
-      require("go").setup(opts)
-      local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = "*.go",
-        callback = function()
-          require('go.format').goimports()
-        end,
-        group = format_sync_grp,
+      require("tree-sitter-manager").setup({
+        ensure_installed = { "python", "rust", "lua", "go", "luadoc", "printf", "vim", "vimdoc", "markdown", "markdown_inline" },
       })
-      return {
-        -- lsp_keymaps = false,
-        -- other options
-      }
-    end,
-    event = { "CmdlineEnter" },
-    ft = { "go", 'gomod' },
-    build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+    end
   }
-
 })
 
--- Settings
-require("general")
+require("blink.cmp").setup()
+require("tree-sitter-manager").setup()
+require("mason").setup()
+require("mason-lspconfig").setup()
+require("nvim-treesitter").setup()
 
--- Plugins
--- require("auto-session").setup()
-require("nvim-autopairs").setup()
-require("line")
-require("buffline")
-require("cmdline")
-require("tree")
-require("configs.lsp")
-require("completion")
-require("lint")
-require("guess-indent").setup {}
-require("telescope").setup {
-  pickers = {
-    colorscheme = {
-      enable_preview = true
-    }
-  }
-}
-vim.notify = require("notify")
-
-require('gitsigns').setup()
-
--- Settings (After plugin load)
-require("mappings")
-require("configs.whichkey")
-
-require("configs.dap.config")
-
-require("configs.luasnip")
-require("macros")
-require('render-markdown').setup({
-  completions = { lsp = { enabled = true } },
+vim.pack.add({
+  { src = "https://github.com/ray-x/go.nvim" },
+  { src = "https://github.com/ray-x/guihua.lua" },
 })
-require 'colorizer'.setup()
-require('go').setup()
+require("go").setup()
+
+-- LSP
+vim.lsp.config("lua_ls", {
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        globals = {
+          'vim',
+          'require'
+        },
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+})
+vim.lsp.config("pylsp", {})
+vim.lsp.config("gopls", {})
+vim.lsp.config("rust_analyzer", {})

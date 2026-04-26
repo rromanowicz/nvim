@@ -14,7 +14,6 @@ vim.api.nvim_create_autocmd({ "BufAdd", "BufEnter", "BufFilePost" }, {
 
 require("lualine").setup {
     options = {
-        theme = "catppuccin",
         always_show_tabline = true,
         disabled_filetypes = { 'NvimTree' },
         component_separators = { left = '', right = '' },
